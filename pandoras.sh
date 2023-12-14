@@ -37,10 +37,6 @@
 # Run the application using sudo and with parameters, for example:
 # shell> sudo pandoras start-box
 
-# TODO:
-# Export dir if required
-#export dir=/var/chroot/
-
 # Prints license
 display_license() {
 
@@ -70,16 +66,16 @@ display_help() {
 cat <<EOT
 Pandoras (v0.0.1)
 
-Options Usage: pandoras [option]
+Options Usage: (sudo) pandoras [option]
 
 Boxes Options:
-  	start-box		Starts chroot
-  	stop-box		Stops chroot
-  	create-box		Creates chroot
-  	delete-box		Deletes chroot
-  	duplicate-box		Duplicates chroot
-  	enter-box		Enters the chroot
-  	list-boxes		Lists all the chroots
+  	-start-box		Starts chroot
+  	-stop-box		Stops chroot
+  	-create-box		Creates chroot
+  	-delete-box		Deletes chroot
+  	-duplicate-box		Duplicates chroot
+  	-enter-box		Enters the chroot
+  	-list-boxes		Lists all the chroots
 
 Other Options:
 	-g, --license		Print the GPL license notification
@@ -91,59 +87,60 @@ EOT
 
 # Prints version
 display_version() {
-	echo "Commbase (v0.0.1)";
+  echo "Commbase (v0.0.1)";
 }
 
-# Routes options
-route_option() {
-
-	# Path to functions
-	export dir=/var/pandoras/includes
-
-	case "$1" in
-
-		'start-box')
-      start_box.sh 
-			;;
-		'stop-box')
-      stop_box.sh
-			;;
-		'create-box')
-      create_box.sh
-			;;
-		'delete-box')
-      delete_box.sh
-			;;
-		'duplicate-box')
-      duplicate_box.sh 
-			;;
-		'enter-box')
-      enter_box.sh 
-			;;
-		'list-boxes')
-      list_boxes.sh
-			;;
-	  '-g' | '--license')
-	    display_license | more
-			exit 99
-			;;
-	  '-h' | '--help')
-	    display_help | less
-			exit 99
-			;;
-	  '-V' | '-v' | '--version')
-	    display_version
-			exit 99
-			;;
-	esac
-
-}
-
+# Options
 main() {
-route_option "$1";
+  case $1 in
+    '-start-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash start_box.sh start_box || { echo "Error: start_box.sh failed."; exit 1; }
+      ;;
+    '-stop-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash stop_box.sh stop_box || { echo "Error: stop_box.sh failed."; exit 1; }
+      ;;
+    '-create-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash create_box.sh create_box || { echo "Error: create_box.sh failed."; exit 1; }
+      ;;
+    '-delete-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash delete_box.sh delete_box || { echo "Error: delete_box.sh failed."; exit 1; }
+      ;;
+    '-duplicate-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash duplicate_box.sh duplicate_box || { echo "Error: duplicate_box.sh failed."; exit 1; }
+      ;;
+    '-enter-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash enter_box.sh enter_box || { echo "Error: enter_box.sh failed."; exit 1; }
+      ;;
+    '-list-boxes')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash list_boxes.sh list_boxes || { echo "Error: list_boxes.sh failed."; exit 1; }
+      ;;
+    '-g' | '--license')
+      display_license | more
+      exit 99
+      ;;
+    '-h' | '--help')
+      display_help | less
+      exit 99
+      ;;
+    '-V' | '-v' | '--version')
+      display_version
+      exit 99
+      ;;
+  esac
 }
 
-main "$1";
+# Set the script to exit on any error
+set -e
+
+# Call the main function with the provided arguments
+main "$@"
 
 exit 99
 

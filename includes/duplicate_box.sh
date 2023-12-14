@@ -43,3 +43,8 @@ duplicate_box() {
   cp $dir/images/"$old".img $dir/images/"$new".img
 }
 
+# Call the parse_skill_ if the script is run directly (not sourced)
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  (duplicate_box)
+fi
+

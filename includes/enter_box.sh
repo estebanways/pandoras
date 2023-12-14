@@ -38,3 +38,8 @@ enter-box() {
   chroot $dir/environment /bin/su -
 } 
 
+# Call the parse_skill_ if the script is run directly (not sourced)
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  (enter-box)
+fi
+

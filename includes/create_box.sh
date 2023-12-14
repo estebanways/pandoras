@@ -31,9 +31,12 @@
 #  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   #
 
 # Creates chroot
+
+#echo "Hello World"
+
 create_box() {
 
-  export dir=/var/pandoras/
+  dir=/var/pandoras
 
 	read -r -p "Type your new chroot name: " chroot
   read -r -p "Type your new chroot size (in GB): " size
@@ -49,4 +52,9 @@ create_box() {
   chroot $dir/environment /bin/su -c 'echo "" > /etc/resolv.conf'
   umount $dir/environment
 }
+
+# Call the parse_skill_ if the script is run directly (not sourced)
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	(create_box)
+fi
 

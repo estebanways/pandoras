@@ -40,3 +40,8 @@ list_boxes() {
   "
 }
 
+# Call the parse_skill_ if the script is run directly (not sourced)
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  (list_boxes)
+fi
+
