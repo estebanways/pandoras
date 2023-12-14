@@ -47,7 +47,6 @@ start_box() {
   chroot $dir/environment /bin/su -c 'sh /boot/boot.sh'
 }
 
-# Call the parse_skill_ if the script is run directly (not sourced)
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   (start_box)
 fi
