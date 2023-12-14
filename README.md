@@ -99,3 +99,11 @@ Done! Now, to start your chroot just execute `sudo pandoras start-box`.
 
 For more command options excute `pandoras --help`.
 
+## Contributors
+
+### Maintainer
+- [@estebanways](https://github.com/estebanways) - Maintainer
+
+### Original Codebase
+This project was originally developed by [rafi16jan](https://github.com/rafi16jan). The initial version of this codebase can be found at [Link to Original Code](https://github.com/rafi16jan/universal-chroot).
+
