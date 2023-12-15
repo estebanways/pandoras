@@ -42,3 +42,7 @@ delete_box() {
   rm $dir/images/"$image".img
 }
 
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	(delete_box)
+fi
+
