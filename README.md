@@ -6,6 +6,18 @@ Universal Chroot environment that can be deployed to most linux distros and with
 
 <img alt="sword-vim" src="./pandoras.jpg?raw=true" width="500" height="320" />
 
+## 🚀 Chroot magic options
+
+- Start chroot
+- Stop chroot
+- Create chroot
+- Delete chroot
+- Duplicate chroot
+- Enter the chroot
+- List chroots
+- Mount partition or directory
+- Upsize chroot
+
 ## Build a Chroot Management System
 
 ### Create your chroot directory
