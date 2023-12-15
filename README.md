@@ -48,13 +48,18 @@ For RHEL, do run:
 
 ```shell
 sudo yum install debootstrap
+
 # Or
 sudo dnf install debootstrap
-# Or if you are using OpenSUSE
+```
+
+If you are using OpenSUSE:
+
+```shell
 sudo zypper install debootstrap
 ```
 
-For Arch based distributions:
+For Arch based distributions.:
 
 ```shell
 sudo pacman -S debootstrap
