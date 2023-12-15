@@ -36,7 +36,7 @@ list_boxes() {
   export dir=/var/pandoras/
 
   echo "Your chroot images:
-  $(ls $dir/images/ | sed 's/.img//g')
+  $(ls $dir/images/ | sed 's/.img//g' | less)
   "
 }
 
