@@ -2,7 +2,7 @@
 
 # Pandoras
 
-Universal Chroot environment that can be deployed to most linux distros and with a portable chroot image that can be moved to one host to another.
+Universal Chroot environment that can be deployed to most linux distros and with a portable chroot image that can be moved from one host to another.
 
 <img alt="sword-vim" src="./pandoras.jpg?raw=true" width="500" height="320" />
 
