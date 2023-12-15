@@ -33,7 +33,7 @@
 # Enters the chroot
 enter-box() {
 
-  export dir=/var/pandoras/
+  export dir=/var/pandoras
 
   chroot $dir/environment /bin/su -
 } 

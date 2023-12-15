@@ -33,7 +33,7 @@
 # Deletes chroot
 delete_box() {
 
-  export dir=/var/pandoras/
+  export dir=/var/pandoras
 
   echo "Your chroot images:
   $(ls $dir/images/ | sed 's/.img//g')

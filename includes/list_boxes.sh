@@ -30,10 +30,10 @@
 #  along with this program; if not, write to the Free Software                 #
 #  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   #
 
-# Lists all the chroots
+# Lists chroots
 list_boxes() {
 
-  export dir=/var/pandoras/
+  export dir=/var/pandoras
 
   echo "Your chroot images:
   $(ls $dir/images/ | sed 's/.img//g' | less)
