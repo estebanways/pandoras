@@ -59,7 +59,7 @@ If you are using OpenSUSE:
 sudo zypper install debootstrap
 ```
 
-For Arch based distributions.:
+For Arch based distributions:
 
 ```shell
 sudo pacman -S debootstrap
@@ -111,7 +111,7 @@ sudo pandoras create-box
 
 Done! Now, to start your chroot just execute `sudo pandoras start-box`.
 
-For more command options excute `pandoras --help`.
+For more command options execute `pandoras --help`.
 
 ## Contributors
 
