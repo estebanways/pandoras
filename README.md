@@ -48,19 +48,19 @@ For RHEL, do run:
 
 ```shell
 sudo yum install debootstrap
-#Or
+# Or
 sudo dnf install debootstrap
-#Or if you are using OpenSUSE
+# Or if you are using OpenSUSE
 sudo zypper install debootstrap
 ```
 
-For Arch based distrubutions:
+For Arch based distributions:
 
 ```shell
 sudo pacman -S debootstrap
 ```
 
-For other distro (custom debootstrap build):
+For other distros (custom debootstrap build):
 
 Don't do this if you can install debootstrap with package manager.
 
@@ -111,8 +111,10 @@ For more command options excute `pandoras --help`.
 ## Contributors
 
 ### Maintainer
+
 - [@estebanways](https://github.com/estebanways) - Maintainer
 
 ### Original Codebase
+
 This project was originally developed by [rafi16jan](https://github.com/rafi16jan). The initial version of this codebase can be found at [Link to Original Code](https://github.com/rafi16jan/universal-chroot).
 
