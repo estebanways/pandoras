@@ -111,6 +111,14 @@ sudo pandoras create-box
 
 Done! Now, to start your chroot just execute `sudo pandoras start-box`.
 
+## Upsize images
+
+To able to upsize images with Pandoras, install qemu-utils. For example:
+
+```shell
+sudo apt-get install qemu-utils
+```
+
 For more command options execute `pandoras --help`.
 
 ## Contributors
