@@ -75,10 +75,10 @@ Boxes Options:
   	-delete-box		Deletes chroot
   	-duplicate-box		Duplicates chroot
   	-enter-box		Enters the chroot
-  	-list-boxes		Lists all the chroots
+  	-list-boxes		Lists chroots
   	-upsize-box		Upsizes chroot
 
-Other Options:
+More Options:
 	-g, --license		Print the GPL license notification
 	-h, --help		Print this Help
 	-V, -v, --version	Print software version and exit

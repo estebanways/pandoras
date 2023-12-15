@@ -33,7 +33,18 @@
 # Stops chroot
 stop_box() {
 
-  export dir=/var/pandoras/
+  export dir=/var/pandoras
+
+  # Ask if there is custom partition to unmont
+  read -r -p "Did you mount a custom partition or directory? (y/n): " mounted_custom_part
+
+  if [ "$mounted_custom_part" == "y" ]; then
+    if grep -qs "$dir"/environment/mnt /proc/mounts; then
+      umount "$dir/environment/mnt"
+    else
+      echo "Specified partition or directory is not currently mounted."
+    fi
+  fi
 
   lsof | grep "/environment/" > $dir/process/1
   cut -c11-15 $dir/process/1 > $dir/process/2
