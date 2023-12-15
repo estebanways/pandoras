@@ -76,6 +76,7 @@ Boxes Options:
   	-duplicate-box		Duplicates chroot
   	-enter-box		Enters the chroot
   	-list-boxes		Lists all the chroots
+  	-upsize-box		Upsizes chroot
 
 Other Options:
 	-g, --license		Print the GPL license notification
@@ -120,6 +121,10 @@ main() {
     '-list-boxes')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash list_boxes.sh list_boxes || { echo "Error: list_boxes.sh failed."; exit 1; }
+      ;;
+    '-upsize-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash upsize_box.sh upsize_box || { echo "Error: upsize_box.sh failed."; exit 1; }
       ;;
     '-g' | '--license')
       display_license | more
