@@ -13,7 +13,7 @@ Universal Chroot environment that can be deployed to most Linux distros and with
 - Create a box
 - Delete a box
 - Duplicate a box
-- Enter the box
+- Enter a box
 - List boxes
 - Mount a partition or directory
 - Upsize a box
