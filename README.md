@@ -118,12 +118,12 @@ Symbolic links (symlinks) in Linux always appear with the permissions lrwxrwxrwx
 Create your first chroot image.
 
 ```
-sudo pandoras create-box
+sudo pandoras --create-box
 ```
 
-Done! Now, to start your chroot just execute `sudo pandoras start-box`.
+Done! Now, to start your chroot just execute `sudo pandoras --start-box`.
 
-For more command options execute `pandoras --help`.
+For more command options and shortcuts execute `pandoras --help`.
 
 ## Extras
 
