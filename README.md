@@ -8,15 +8,15 @@ Universal Chroot environment that can be deployed to most Linux distros and with
 
 ## 🚀 Chroot magic options
 
-- Start chroot
-- Stop chroot
-- Create chroot
-- Delete chroot
-- Duplicate chroot
-- Enter the chroot
-- List chroots
-- Mount partition or directory
-- Upsize chroot
+- Start a box
+- Stop a box
+- Create a box
+- Delete a box
+- Duplicate a box
+- Enter the box
+- List boxes
+- Mount a partition or directory
+- Upsize a box
 
 ## Build a Chroot Management System
 

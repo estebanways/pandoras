@@ -69,14 +69,14 @@ Pandoras (v0.0.1)
 Options Usage: (sudo) pandoras [option]
 
 Boxes Options:
-  	-start-box		Starts chroot
-  	-stop-box		Stops chroot
-  	-create-box		Creates chroot
-  	-delete-box		Deletes chroot
-  	-duplicate-box		Duplicates chroot
-  	-enter-box		Enters the chroot
-  	-list-boxes		Lists chroots
-  	-upsize-box		Upsizes chroot
+  	-s, --start-box		Starts chroot
+  	-t, --stop-box		Stops chroot
+  	-c, --create-box	Creates chroot
+  	-r, --delete-box	Deletes chroot
+  	-d, --duplicate-box	Duplicates chroot
+  	-e, --enter-box		Enters the chroot
+  	-l, --list-boxes	Lists chroots
+  	-u, --upsize-box	Upsizes chroot
 
 More Options:
 	-g, --license		Print the GPL license notification
@@ -94,35 +94,35 @@ display_version() {
 # Options
 main() {
   case $1 in
-    '-start-box')
+    '-s' | '--start-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash start_box.sh start_box || { echo "Error: start_box.sh failed."; exit 1; }
       ;;
-    '-stop-box')
+    '-t' | '--stop-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash stop_box.sh stop_box || { echo "Error: stop_box.sh failed."; exit 1; }
       ;;
-    '-create-box')
+    '-c' | '--create-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash create_box.sh create_box || { echo "Error: create_box.sh failed."; exit 1; }
       ;;
-    '-delete-box')
+    '-r' | '--delete-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash delete_box.sh delete_box || { echo "Error: delete_box.sh failed."; exit 1; }
       ;;
-    '-duplicate-box')
+    '-d' | '--duplicate-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash duplicate_box.sh duplicate_box || { echo "Error: duplicate_box.sh failed."; exit 1; }
       ;;
-    '-enter-box')
+    '-e' | '--enter-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash enter_box.sh enter_box || { echo "Error: enter_box.sh failed."; exit 1; }
       ;;
-    '-list-boxes')
+    '-l' | '--list-boxes')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash list_boxes.sh list_boxes || { echo "Error: list_boxes.sh failed."; exit 1; }
       ;;
-    '-upsize-box')
+    '-u' | '--upsize-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash upsize_box.sh upsize_box || { echo "Error: upsize_box.sh failed."; exit 1; }
       ;;
