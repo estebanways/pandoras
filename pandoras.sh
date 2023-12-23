@@ -64,7 +64,7 @@ EOT
 display_help() {
 
 cat <<EOT
-Pandoras (v0.0.1)
+Pandoras (v0.1.1)
 
 Options Usage: (sudo) pandoras [option]
 
