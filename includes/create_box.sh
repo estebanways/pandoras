@@ -35,7 +35,7 @@ create_box() {
 
   dir=/var/pandoras
 
-	read -r -p "Type your new chroot name: " chroot
+  read -r -p "Type your new chroot name: " chroot
   read -r -p "Type your new chroot size (in GB): " size
   dd if=/dev/zero of=$dir/images/"$chroot".img bs=1G count="$size"
   mke2fs -t ext4 $dir/images/"$chroot".img
@@ -51,6 +51,5 @@ create_box() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-	(create_box)
+    (create_box)
 fi
-
