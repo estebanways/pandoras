@@ -65,4 +65,3 @@ stop_box() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   (stop_box)
 fi
-

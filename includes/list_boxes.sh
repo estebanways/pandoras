@@ -43,4 +43,3 @@ list_boxes() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   (list_boxes)
 fi
-

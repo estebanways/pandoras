@@ -46,4 +46,3 @@ duplicate_box() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   (duplicate_box)
 fi
-

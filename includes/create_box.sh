@@ -51,5 +51,5 @@ create_box() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    (create_box)
+  (create_box)
 fi

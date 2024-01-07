@@ -39,7 +39,7 @@ upsize_box() {
   $(ls $dir/images/ | sed 's/.img//g')
   " 
   echo "Stop your chroot before continue!"
-	read -r -p "Type your chroot name: " chroot
+  read -r -p "Type your chroot name: " chroot
   read -r -p "Type the new chroot size (in GB): " size
   qemu-img resize -f raw "$dir"/images/"$chroot".img "$size"G
   e2fsck -f "$dir"/images/"$chroot".img
@@ -47,6 +47,5 @@ upsize_box() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-	(upsize_box)
+  (upsize_box)
 fi
-

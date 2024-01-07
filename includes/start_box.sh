@@ -72,4 +72,3 @@ start_box() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   (start_box)
 fi
-

@@ -43,6 +43,5 @@ delete_box() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-	(delete_box)
+  (delete_box)
 fi
-
