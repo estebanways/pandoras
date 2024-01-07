@@ -35,9 +35,7 @@ upsize_box() {
 
   export dir=/var/pandoras
 
-  echo "Your chroot images:
-  $(ls $dir/images/ | sed 's/.img//g')
-  " 
+  sudo bash ./list_boxes.sh
   echo "Stop your chroot before continue!"
   read -r -p "Type your chroot name: " chroot
   read -r -p "Type the new chroot size (in GB): " size

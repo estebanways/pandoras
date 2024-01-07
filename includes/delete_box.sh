@@ -35,9 +35,7 @@ delete_box() {
 
   export dir=/var/pandoras
 
-  echo "Your chroot images:
-  $(ls $dir/images/ | sed 's/.img//g')
-  " 
+  sudo bash ./list_boxes.sh
   read -r -p "Type your image name for deletion: " image
   rm $dir/images/"$image".img
 }
