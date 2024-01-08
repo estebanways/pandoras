@@ -76,6 +76,7 @@ Boxes Options:
   	-d, --duplicate-box	Duplicates chroot
   	-e, --enter-box		Enters the chroot
   	-l, --list-boxes	Lists chroots
+  	-f, --list-filesystems	Lists chroots filesystems
   	-u, --upsize-box	Upsizes chroot
 
 More Options:
@@ -121,6 +122,10 @@ main() {
     '-l' | '--list-boxes')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash list_boxes.sh list_boxes || { echo "Error: list_boxes.sh failed."; exit 1; }
+      ;;
+    '-f' | '--list-filesystems')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash list_filesystems.sh list_boxes || { echo "Error: list_filesystems.sh failed."; exit 1; }
       ;;
     '-u' | '--upsize-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }

@@ -33,18 +33,10 @@
 # Stops chroot
 stop_box() {
 
+  # Path to the env file
+  source ../env/.env
+
   export dir=/var/pandoras
-
-  # Ask if there is custom partition to unmont
-  read -r -p "Did you mount a custom partition or directory? (y/n): " mounted_custom_part
-
-  if [ "$mounted_custom_part" == "y" ]; then
-    if grep -qs "$dir"/environment/mnt /proc/mounts; then
-      umount "$dir/environment/mnt"
-    else
-      echo "Specified partition or directory is not currently mounted."
-    fi
-  fi
 
   lsof | grep "/environment/" > $dir/process/1
   cut -c11-15 $dir/process/1 > $dir/process/2
@@ -55,11 +47,41 @@ stop_box() {
   sed ':a;N;$!ba;s/\n/\nkill -9 /g' $dir/process/5 > $dir/process/6
   sed '1 d' $dir/process/6 > $dir/process/7
   sh $dir/process/6
-  umount $dir/environment/sys
-  umount $dir/environment/proc
-  umount $dir/environment/dev
-  umount $dir/environment/etc/resolv.conf
-  umount $dir/environment
+
+  # Unmount custom mounts
+
+  # Check if the mount file exists
+  if [ ! -f "$dir/images/tmp_mounts.mnt" ]; then
+    echo "File not found: $dir/images/tmp_mounts.mnt"
+  else
+    # Unmount the mount file content
+    while IFS= read -r line; do
+      # Use cut to extract the first field
+      target_point=$(echo "$line" | cut -d' ' -f2)
+
+      umount "$target_point"
+    done < "$dir/images/tmp_mounts.mnt"
+
+    rm $dir/images/tmp_mounts.mnt
+  fi
+
+  # Unmount filesystems
+
+  # Check if the mount file exists
+  if [ ! -f "$dir/images/$RUNNING_IMAGE_NAME.filesystems.mnt" ]; then
+    echo "File not found: $dir/images/$RUNNING_IMAGE_NAME.filesystems.mnt"
+    exit 1
+  else
+    # Unmount the mount file content
+    while IFS= read -r line; do
+      # Use cut to extract the second fields
+      target_point=$(echo "$line" | cut -d' ' -f2)
+
+      umount "$target_point"
+    done < "$dir/images/$RUNNING_IMAGE_NAME.filesystems.mnt"
+
+    umount $dir/environment
+  fi
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

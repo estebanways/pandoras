@@ -48,6 +48,14 @@ create_box() {
   chroot $dir/environment /bin/su -c 'echo "#!/bin/sh" > /boot/boot.sh' &&
   chroot $dir/environment /bin/su -c 'echo "" > /etc/resolv.conf'
   umount $dir/environment
+
+  # Create the default mount points file
+  echo "/etc/resolv.conf $dir/environment/etc/resolv.conf" > "$dir/images/$chroot.filesystems.mnt"
+  echo "/dev $dir/environment/dev" >> "$dir/images/$chroot.filesystems.mnt"
+  #echo "/dev/pts $dir/environment/dev/pts" >> "$dir/images/$chroot.filesystems.mnt"
+  echo "/proc $dir/environment/proc" >> "$dir/images/$chroot.filesystems.mnt"
+  echo "/sys $dir/environment/sys" >> "$dir/images/$chroot.filesystems.mnt"
+  echo "Mount points file created successfully at: $dir/images/$chroot.filesystems.mnt"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

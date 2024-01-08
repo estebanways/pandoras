@@ -125,6 +125,30 @@ Done! Now, to start your chroot just execute `sudo pandoras --start-box`.
 
 For more command options and shortcuts execute `pandoras --help`.
 
+## Advanced topics
+
+### Modify mount points
+
+You can modify the default mount points before creating a new Pandoras box in the script create_box.sh. These changes will remain until the next modification of the file.
+
+For example, to add a mount point for /dev/pts:
+
+```shell
+sudo nano /var/pandoras/includes/create_box.sh
+```
+
+Uncomment the next line:
+
+```shell
+  #echo "/dev/pts $dir/environment/dev/pts" >> "$dir/images/$chroot.filesystems.mnt"
+```
+
+Save changes and then create your new box.
+
+The mount points will be stored in a brand-new Pandoras box file <box-name>.filesystems.mnt.
+
+You can also modify the mount points in the Pandoras Box file <box-name>.filesystems.mnt before starting the box. These changes will remain until the next modification of the file.
+
 ## Extras
 
 ### Upsize chroots

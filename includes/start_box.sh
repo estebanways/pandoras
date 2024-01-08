@@ -33,12 +33,15 @@
 # Starts chroot
 start_box() {
 
+  # Path to the env file
+  ENV_FILE="../env/.env"
+
   export dir=/var/pandoras
 
   sudo bash ./list_boxes.sh
   read -r -p "Type your image name: " image
 
-  # Ask if a custom partition should be added
+  # Ask if a custom partition or directory should be added
   read -r -p "Do you want to add a custom partition or directory? (y/n): " add_custom_part
 
   mount $dir/images/"$image".img $dir/environment
@@ -46,6 +49,9 @@ start_box() {
   if [ "$add_custom_part" == "y" ]; then
     # Ask for the device path or directory path
     read -r -p "Type the device or directory path (e.g., /dev/sdXn or /path/to/directory): " custom_part
+
+    # Create the temporary custom mount points file
+    echo "$custom_part $dir/environment/$custom_part" > "$dir/images/tmp_mounts.mnt"
 
     # Check if it's a directory or a device
     if [ -b "$custom_part" ]; then
@@ -60,10 +66,24 @@ start_box() {
     fi
   fi
 
-  mount -o bind /etc/resolv.conf $dir/environment/etc/resolv.conf
-  mount -o bind /dev $dir/environment/dev
-  mount -o bind /proc $dir/environment/proc
-  mount -o bind /sys $dir/environment/sys
+  # Check if the mount file exists
+  if [ ! -f "$dir/images/$image.filesystems.mnt" ]; then
+    echo "File not found: $dir/images/$image.filesystems.mnt"
+    exit 1
+  fi
+
+  # Mount the mount file content
+  while IFS= read -r line; do
+    # Use cut to extract the first and second fields
+    source_point=$(echo "$line" | cut -d' ' -f1)
+    target_point=$(echo "$line" | cut -d' ' -f2)
+
+    mount -o bind "$source_point" "$target_point"
+  done < "$dir/images/$image.filesystems.mnt"
+
+  # Update the running image name
+  sed -i "s/^RUNNING_IMAGE_NAME=.*/RUNNING_IMAGE_NAME=\"$image\"/" $ENV_FILE
+
   chroot $dir/environment /bin/su -c 'sh /boot/boot.sh'
 }
 

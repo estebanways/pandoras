@@ -30,21 +30,21 @@
 #  along with this program; if not, write to the Free Software                 #
 #  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   #
 
-# Lists chroots
-list_boxes() {
+# Lists filesystems
+list_filesystems() {
 
   export dir=/var/pandoras
 
-  echo "Your chroot images:
-  $(find "$dir/images" -type f -name "*.img" -exec basename {} .img \; | less)
+  echo "Your chroot image filesystems:
+  $(find "$dir/images" -type f -name "*.mnt" -exec basename {} .mnt \; | less)
   "
 
   # If your device does not support or have find, switch to ls:
   #echo "Your chroot images:
-  #$(ls $dir/images/ | sed 's/.img//g' | less)
+  #$(ls $dir/images/ | sed 's/.mnt//g' | less)
   #"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  (list_boxes)
+  (list_filesystems)
 fi

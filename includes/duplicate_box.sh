@@ -39,6 +39,7 @@ duplicate_box() {
   read -r -p "Type your old image name: " old
   read -r -p "Type your new image name: " new
   cp $dir/images/"$old".img $dir/images/"$new".img
+  cp $dir/images/"$old".filesystems.mnt $dir/images/"$new".filesystems.mnt
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
