@@ -39,7 +39,7 @@ list_boxes() {
   $(find "$dir/images" -type f -name "*.img" -exec basename {} .img \; | less)
   "
 
-  # If your device does not support or have find, switch to ls:
+  # If your Linux version does not support or have find, switch from find to ls:
   #echo "Your chroot images:
   #$(ls $dir/images/ | sed 's/.img//g' | less)
   #"
