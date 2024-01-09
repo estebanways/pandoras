@@ -15,7 +15,7 @@ Universal Chroot environment that can be deployed to most Linux distributions to
 - Duplicate a box
 - Enter a box
 - List boxes and filesystems
-- Mount a partition or directory
+- Mount custom directories
 - Upsize a box
 
 ## Build a Chroot Management System
@@ -168,4 +168,3 @@ sudo apt-get install qemu-utils
 ### Original Codebase
 
 This project was originally developed by [rafi16jan](https://github.com/rafi16jan). The initial version of this codebase can be found at [Link to Original Code](https://github.com/rafi16jan/universal-chroot).
-
