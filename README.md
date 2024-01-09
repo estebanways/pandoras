@@ -32,6 +32,7 @@ sudo mv pandoras /var
 This is going to create the directories:
 
 `/var/pandoras`: Your chroot directory.
+<br />`/var/pandoras/env`: The env directory.
 <br />`/var/pandoras/images`: The images directory.
 <br />`/var/pandoras/process`: The process directory.
 <br />`/var/pandoras/environment`: The chroot environment directory that will be mounted.
