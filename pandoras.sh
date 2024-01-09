@@ -89,7 +89,7 @@ EOT
 
 # Prints version
 display_version() {
-  echo "Pandoras (v0.1.2)";
+  echo "Pandoras (v0.1.3)";
 }
 
 # Options
