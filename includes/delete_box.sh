@@ -38,6 +38,7 @@ delete_box() {
   sudo bash ./list_boxes.sh
   read -r -p "Type your image name for deletion: " image
   rm $dir/images/"$image".img
+  rm $dir/images/"$image".filesystems.mnt
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
