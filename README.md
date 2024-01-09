@@ -14,7 +14,7 @@ Universal Chroot environment that can be deployed to most Linux distributions to
 - Delete a box
 - Duplicate a box
 - Enter a box
-- List boxes
+- List boxes and filesystems
 - Mount a partition or directory
 - Upsize a box
 

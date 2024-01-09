@@ -38,33 +38,12 @@ start_box() {
 
   export dir=/var/pandoras
 
-  sudo bash ./list_boxes.sh
-  read -r -p "Type your image name: " image
-
-  # Ask if a custom partition or directory should be added
-  read -r -p "Do you want to add a custom partition or directory? (y/n): " add_custom_part
+  # Check if a box name is provided as a command-line parameter
+  if [ -n "$1" ]; then
+    image="$1"
+  fi
 
   mount $dir/images/"$image".img $dir/environment
-
-  if [ "$add_custom_part" == "y" ]; then
-    # Ask for the device path or directory path
-    read -r -p "Type the device or directory path (e.g., /dev/sdXn or /path/to/directory): " custom_part
-
-    # Create the temporary custom mount points file
-    echo "$custom_part $dir/environment/$custom_part" > "$dir/images/tmp_mounts.mnt"
-
-    # Check if it's a directory or a device
-    if [ -b "$custom_part" ]; then
-      # It's a block device (partition)
-      mount "$custom_part" $dir/environment/mnt
-    elif [ -d "$custom_part" ]; then
-      # It's a directory
-      mount -o bind "$custom_part" $dir/environment/mnt
-    else
-      echo "Invalid path or type. Exiting."
-      return
-    fi
-  fi
 
   # Check if the mount file exists
   if [ ! -f "$dir/images/$image.filesystems.mnt" ]; then
@@ -82,11 +61,12 @@ start_box() {
   done < "$dir/images/$image.filesystems.mnt"
 
   # Update the running image name
-  sed -i "s/^RUNNING_IMAGE_NAME=.*/RUNNING_IMAGE_NAME=\"$image\"/" $ENV_FILE
+  sed -i "s/^RUNNING_IMG_NAME=.*/RUNNING_IMG_NAME=\"$image\"/" $ENV_FILE
 
   chroot $dir/environment /bin/su -c 'sh /boot/boot.sh'
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  (start_box)
+# Check if a command-line argument is provided and call start_box with the argument
+if [ -n "$1" ]; then
+  (start_box "$1")
 fi

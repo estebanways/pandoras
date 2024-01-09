@@ -64,40 +64,58 @@ EOT
 display_help() {
 
 cat <<EOT
-Pandoras (v0.1.1)
+Pandoras (v0.1.3)
 
-Options Usage: (sudo) pandoras [option]
+Options Usage: (sudo) pandoras [options]
 
 Boxes Options:
-  	-s, --start-box		Starts chroot
-  	-t, --stop-box		Stops chroot
-  	-c, --create-box	Creates chroot
-  	-r, --delete-box	Deletes chroot
-  	-d, --duplicate-box	Duplicates chroot
-  	-e, --enter-box		Enters the chroot
-  	-l, --list-boxes	Lists chroots
-  	-f, --list-filesystems	Lists chroots filesystems
-  	-u, --upsize-box	Upsizes chroot
+    -l, --list-boxes                  Lists chroots
+    -f, --list-filesystems            Lists chroots filesystems
+    -s, --start-box <box_name>        Starts chroot no dialogs
+    -e, --enter-box                   Enters the chroot
+    -t, --stop-box                    Stops chroot
+    -c, --create-box                  Creates chroot
+    -r, --delete-box                  Deletes chroot
+    -d, --duplicate-box               Duplicates chroot
+    -u, --upsize-box                  Upsizes chroot
 
 More Options:
-	-g, --license		Print the GPL license notification
-	-h, --help		Print this Help
-	-V, -v, --version	Print software version and exit
+    -g, --license                     Print the GPL license notification
+    -h, --help                        Print this Help
+    -V, -v, --version                 Print software version and exit
 
 EOT
 }
 
 # Prints version
 display_version() {
-  echo "Commbase (v0.0.1)";
+  echo "Pandoras (v0.1.2)";
 }
 
 # Options
 main() {
   case $1 in
-    '-s' | '--start-box')
+    '-l' | '--list-boxes')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
-      bash start_box.sh start_box || { echo "Error: start_box.sh failed."; exit 1; }
+      bash list_boxes.sh list_boxes || { echo "Error: list_boxes.sh failed."; exit 1; }
+      ;;
+    '-f' | '--list-filesystems')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash list_filesystems.sh list_boxes || { echo "Error: list_filesystems.sh failed."; exit 1; }
+      ;;
+    '-s' | '--start-box')
+      # Check if a box name is provided
+      if [ -z "$2" ]; then
+        echo "Error: Box name is required for start-box."
+        exit 1
+      fi
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      # Pass the box name as a parameter to start_box.sh
+      bash start_box.sh "$2" || { echo "Error: start_box.sh failed."; exit 1; }
+      ;;
+    '-e' | '--enter-box')
+      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
+      bash enter_box.sh enter_box || { echo "Error: enter_box.sh failed."; exit 1; }
       ;;
     '-t' | '--stop-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
@@ -114,18 +132,6 @@ main() {
     '-d' | '--duplicate-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
       bash duplicate_box.sh duplicate_box || { echo "Error: duplicate_box.sh failed."; exit 1; }
-      ;;
-    '-e' | '--enter-box')
-      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
-      bash enter_box.sh enter_box || { echo "Error: enter_box.sh failed."; exit 1; }
-      ;;
-    '-l' | '--list-boxes')
-      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
-      bash list_boxes.sh list_boxes || { echo "Error: list_boxes.sh failed."; exit 1; }
-      ;;
-    '-f' | '--list-filesystems')
-      cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
-      bash list_filesystems.sh list_boxes || { echo "Error: list_filesystems.sh failed."; exit 1; }
       ;;
     '-u' | '--upsize-box')
       cd /var/pandoras/includes || { echo "Error: Unable to change directory."; exit 1; }
