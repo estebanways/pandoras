@@ -129,7 +129,7 @@ For more command options and shortcuts execute `pandoras --help`.
 
 ### Modify mount points
 
-You can modify the default mount points before creating a new Pandoras box in the script create_box.sh. These changes will remain until the next modification of the file.
+You can modify the default mount points in the script create_box.sh before creating a new Pandoras box. These changes will remain until the next modification of the file.
 
 For example, to add a mount point for /dev/pts:
 
@@ -148,6 +148,12 @@ Save changes and then create your new box.
 The mount points will be stored in a brand-new Pandoras box file <box-name>.filesystems.mnt.
 
 You can also modify the mount points in the Pandoras Box file <box-name>.filesystems.mnt before starting the box. These changes will remain until the next modification of the file.
+
+For example, add a new mount point like this:
+
+```shell
+/home/my_user/tmp /var/pandoras/environment/mnt
+```
 
 ## Extras
 
