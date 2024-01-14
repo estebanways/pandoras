@@ -64,7 +64,7 @@ EOT
 display_help() {
 
 cat <<EOT
-Pandoras (v0.1.3)
+Pandoras (v0.1.2)
 
 Options Usage: (sudo) pandoras [options]
 
@@ -89,7 +89,7 @@ EOT
 
 # Prints version
 display_version() {
-  echo "Pandoras (v0.1.3)";
+  echo "Pandoras (v0.1.2)";
 }
 
 # Options
