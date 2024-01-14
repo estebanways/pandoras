@@ -25,7 +25,17 @@ Universal Chroot environment that can be deployed to most Linux distributions, e
 - Easily customizable source code
 - Full Linux, Android, and Chromebook compatibility
 
-## Build a boxes Management System
+## Build a boxes management system
+
+### Bash, Sh, and sudo
+
+Basically, Pandoras requires Bash to run itself, while boxes can be created to run different shells like Sh or Bash.
+
+Keep in mind that the availability and functionality of Bash may vary based on the specific device, Android version, or Chromebook model you are using.
+
+To get Bash, Android users can install an app such as Termux. Chromebook's users can use Bash after the activation of the Developer Mode.
+
+System users without the sudo command, must log in as root instead.
 
 ### Create your Pandoras directory
 
@@ -52,12 +62,6 @@ If you want to have a main directory instead of /var/pandoras make sure you edit
 #!/bin/env bash
 export dir=#your custom directory, or just leave it if you want to use /var/pandoras
 ```
-
-Keep in mind that the availability and functionality of Bash may vary based on the specific device, Android version, or Chromebook model you are using.
-
-Basically, Pandoras requires Bash to run itself, while boxes can be created to run different shells like Sh or Bash.
-
-To get Bash, Android users can install an app such as Termux. Chromebook's users can use Bash after the activation of the Developer Mode.
 
 ## Install Debootstrap
 
