@@ -46,7 +46,7 @@ stop_box() {
   sed 's/ //g' $dir/process/4 > $dir/process/5
   sed ':a;N;$!ba;s/\n/\nkill -9 /g' $dir/process/5 > $dir/process/6
   sed '1 d' $dir/process/6 > $dir/process/7
-  sh $dir/process/6
+  bash $dir/process/6
 
   # Unmount filesystems
 
