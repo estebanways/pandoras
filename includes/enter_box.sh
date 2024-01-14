@@ -39,5 +39,5 @@ enter_box() {
 } 
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  (enter-box)
+  (enter_box)
 fi
