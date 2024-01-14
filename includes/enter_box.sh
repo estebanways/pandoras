@@ -35,7 +35,11 @@ enter_box() {
 
   export dir=/var/pandoras
 
+  # Enter the chroot using the shell defined in the main system
   chroot $dir/environment /bin/su -
+
+  # Enter the chroot using sh as shell
+  #chroot $dir/environment /bin/sh
 } 
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
