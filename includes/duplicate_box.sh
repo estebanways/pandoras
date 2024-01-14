@@ -35,7 +35,9 @@ duplicate_box() {
 
   export dir=/var/pandoras
 
-  sudo bash ./list_boxes.sh
+  echo "Your chroot images:
+  $(find "$dir/images" -type f -name "*.img" -exec basename {} .img \; | less)
+  "
   read -r -p "Type your old image name: " old
   read -r -p "Type your new image name: " new
   cp $dir/images/"$old".img $dir/images/"$new".img
