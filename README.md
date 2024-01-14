@@ -2,7 +2,7 @@
 
 # Pandoras
 
-Universal Chroot environment that can be deployed to most Linux distributions to create portable chroot images that can be moved from one host to another.
+Universal Chroot environment that can be deployed to most Linux distributions, enabling the creation of portable boxes transferable among different hosts.
 
 <img alt="sword-vim" src="./pandoras.jpg?raw=true" width="500" height="320" />
 
@@ -14,13 +14,20 @@ Universal Chroot environment that can be deployed to most Linux distributions to
 - Delete a box
 - Duplicate a box
 - Enter a box
-- List boxes and filesystems
-- Mount custom directories
+- List boxes
+- List filesystems
 - Upsize a box
 
-## Build a Chroot Management System
+## Further aspects
 
-### Create your chroot directory
+- Mount of custom directories
+- Enter the box directly to a specified shell
+- Easily customizable source code
+- Full Linux, Android, and Chromebook compatibility
+
+## Build a boxes Management System
+
+### Create your Pandoras directory
 
 ```shell
 cd
@@ -31,22 +38,26 @@ sudo mv pandoras /var
 
 This is going to create the directories:
 
-`/var/pandoras`: Your chroot directory.
+`/var/pandoras`: Your Pandoras main directory.
 <br />`/var/pandoras/env`: The env directory.
-<br />`/var/pandoras/images`: The images directory.
+<br />`/var/pandoras/images`: The images directory and also the filesystems configuration directory.
 <br />`/var/pandoras/process`: The process directory.
 <br />`/var/pandoras/environment`: The chroot environment directory that will be mounted.
 
-If you want to have a chroot directory instead of /var/pandoras make sure you edit the Pandoras scripts to your directory.
+If you want to have a main directory instead of /var/pandoras make sure you edit the Pandoras scripts to your directory.
 
-/var/pandoras can be anything, depends on where you do want to put your chroot images (The directory or partition that have enough free space). For Chrome OS it's best on /home/chronos directory and on Android it's best on /storage or /data directory.
+/var/pandoras can be anything, depending on where you do want to put your boxes images (the directory or partition that have enough free space). For Chrome OS it's best on /home/chronos directory and on Android it's best on /storage or /data directory.
 
 ```shell
 #!/bin/env bash
-export dir=#your custom directory, or just leave it if you want to use /var/chroot
+export dir=#your custom directory, or just leave it if you want to use /var/pandoras
 ```
 
 Keep in mind that the availability and functionality of Bash may vary based on the specific device, Android version, or Chromebook model you are using.
+
+Basically, Pandoras requires Bash to run itself, while boxes can be created to run different shells like Sh or Bash.
+
+To get Bash, Android users can install an app such as Termux. Chromebook's users can use Bash after the activation of the Developer Mode.
 
 ## Install Debootstrap
 
@@ -116,13 +127,13 @@ ls -l pandoras
 
 Symbolic links (symlinks) in Linux always appear with the permissions lrwxrwxrwx, which means they are read, write, and execute for all users, but it doesn't represent the actual permissions of the target file or directory. The permissions of the symlink itself are not relevant in terms of access control.
 
-Create your first chroot image.
+Create your first box image.
 
 ```
 sudo pandoras --create-box
 ```
 
-Done! Now, to start your chroot just execute `sudo pandoras --start-box`.
+Done! Now, to start your box just execute `sudo pandoras --start-box`.
 
 For more command options and shortcuts execute `pandoras --help`.
 
@@ -130,7 +141,7 @@ For more command options and shortcuts execute `pandoras --help`.
 
 ### Modify mount points
 
-You can modify the default mount points in the script create_box.sh before creating a new Pandoras box. These changes will remain until the next modification of the file.
+You can modify the default mount points in the script includes/create_box.sh before creating a new Pandoras box. These changes will remain until the next modification of the file.
 
 For example, to add a mount point for /dev/pts:
 
@@ -156,9 +167,21 @@ For example, add a new mount point like this:
 /home/my_user/tmp /var/pandoras/environment/mnt
 ```
 
+### Enter a box using Sh as shell
+
+To enter your box using Sh instead of Bash (Pandoras default) as shell, modify the script includes/enter_box.sh like this:
+
+```shell
+  # Enter the chroot using the shell defined in the main system
+  #chroot $dir/environment /bin/su -
+
+  # Enter the chroot using sh as shell
+  chroot $dir/environment /bin/sh
+```
+
 ## Extras
 
-### Upsize chroots
+### Upsize boxes
 
 To be able to upsize chroots with Pandoras, install qemu-utils. For example:
 
@@ -174,4 +197,4 @@ sudo apt-get install qemu-utils
 
 ### Original Codebase
 
-This project was originally developed by [rafi16jan](https://github.com/rafi16jan). The initial version of this codebase can be found at [Link to Original Code](https://github.com/rafi16jan/universal-chroot).
+This project was originally developed by [rafi16jan](https://github.com/rafi16jan) in Sh. The initial version of this codebase can be found at [rafi16jan/universal-chroot](https://github.com/rafi16jan/universal-chroot).
