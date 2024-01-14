@@ -33,7 +33,7 @@
 # Starts chroot
 start_box() {
 
-  # Path to the env file
+  # Path to the .env file
   ENV_FILE="../env/.env"
 
   export dir=/var/pandoras
