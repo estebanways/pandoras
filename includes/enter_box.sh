@@ -31,7 +31,7 @@
 #  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   #
 
 # Enters the chroot
-enter-box() {
+enter_box() {
 
   export dir=/var/pandoras
 
