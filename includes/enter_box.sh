@@ -40,7 +40,7 @@ enter_box() {
 
   # Enter the chroot using sh as shell
   #chroot $dir/environment /bin/sh
-} 
+}
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   (enter_box)
