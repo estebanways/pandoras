@@ -38,6 +38,21 @@ start_box() {
 
   export dir=/var/pandoras
 
+  # Check if the directory is empty (except for .gitkeep)
+  isEmpty=true
+  shopt -s nullglob
+  for file in "$dir/environment"/*; do
+    if [ "$file" != "$dir/environment/.gitkeep" ]; then
+      isEmpty=false
+      break
+    fi
+  done
+
+  if [ "$isEmpty" = false ]; then
+    echo "The directory ${dir}/environment is not empty, exiting..."
+    exit 1
+  fi
+
   # Check if a box name is provided as a command-line parameter
   if [ -n "$1" ]; then
     image="$1"
